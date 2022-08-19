@@ -6,5 +6,4 @@
       <dir packagePrivate="true">demo</dir>
     </source>
   </scanDirectories>
-  <cacheDir>.annotated-container-cache</cacheDir>
 </annotatedContainer>
