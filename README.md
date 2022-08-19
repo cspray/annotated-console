@@ -1,14 +1,14 @@
 # Annotated Console
 
-Annotated Console is a way to autowire and configure [symfony/console]() applications using [Annotated Container](). Out of the box, Annotated Console is intended to provide the following features:
+Annotated Console is a way to autowire and configure [symfony/console](https://github.com/symfony/console) applications using [Annotated Container](https://github.com/cspray/annotated-container). Out of the box, Annotated Console is intended to provide the following features:
 
 - Automatically add Command instances to a Symfony Application.
 - Allow configuring a Command using PHP 8 Attributes.
-- Depend on services in Command constructors and take advantage of other functionality provided by [Annotated Container]().
+- Depend on services in Command constructors and take advantage of other functionality provided by [Annotated Container](https://github.com/cspray/annotated-container).
 
 ## Installation
 
-I recommend installing Annotated Console using [Composer]().
+I recommend installing Annotated Console using [Composer](https://getcomposer.org).
 
 ```shell
 composer require cspray/annotated-console:dev-main
@@ -23,7 +23,7 @@ Annotated Console is designed to get going in a few straightforward steps.
 
 ## Step 1 - Initiate your Container
 
-The functionality for this library is primarily provided by [Annotated Container](). Which means you need to make sure that your configuration is setup to boostrap your app. As long as you have a PSR-4 or PSR-0 autoload configuration setup in your `composer.json` you can run the following command from the root of your project:
+The functionality for this library is primarily provided by [Annotated Container](https://github.com/cspray/annotated-container). Which means you need to make sure that your configuration is setup to boostrap your app. As long as you have a PSR-4 or PSR-0 autoload configuration setup in your `composer.json` you can run the following command from the root of your project:
 
 ```shell
 ./vendor/bin/annotated-container init
@@ -61,7 +61,9 @@ At this point you're ready to start adding Commands! Anywhere in a directory sca
 namespace Acme\Demo;
 
 use Symfony\Component\Console\Command\Command;
-use Cspray\AnnotatedConsole\Attribute\ConsoleCommand;use Symfony\Component\Console\Input\InputInterface;use Symfony\Component\Console\Output\OutputInterface;
+use Cspray\AnnotatedConsole\Attribute\ConsoleCommand;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 #[ConsoleCommand('hello-world')]
 class HelloWorld extends Command {
