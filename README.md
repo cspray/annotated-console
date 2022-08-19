@@ -29,6 +29,8 @@ The functionality for this library is primarily provided by [Annotated Container
 ./vendor/bin/annotated-container init
 ```
 
+By default, the init command will create a directory to cache your Container so static analysis doesn't have to run on every Command. Early in development it is advised to disable the cache by removing the `<cacheDir>` element from the configuration file. It is important that if new Services or Commands are added the Container cache is busted appropriately.
+
 ## Step 2 - Create your App's Binary
 
 Next, you'll need to create the file that you'll use to run your app. You can name and store this file anywhere you'd like, but we'll put our example in `./bin/acme`.
