@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<annotatedContainer xmlns="https://annotated-container.cspray.io/schema/annotated-container.xsd">
+  <scanDirectories>
+    <source>
+      <dir>src</dir>
+      <dir packagePrivate="true">demo</dir>
+    </source>
+  </scanDirectories>
+  <cacheDir>.annotated-container-cache</cacheDir>
+</annotatedContainer>

@@ -1,0 +1,10 @@
+#!/usr/bin/env php
+<?php declare(strict_types=1);
+
+use Cspray\AnnotatedConsole\AnnotatedConsole;
+use Symfony\Component\Console\Input\ArgvInput;
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+$exitCode = (new AnnotatedConsole(['default', 'dev']))->run(new ArgvInput());
+exit($exitCode);

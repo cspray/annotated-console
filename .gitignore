@@ -1,0 +1,5 @@
+.annotated-container-cache
+.phpunit.cache
+.phpunit.result.cache
+build
+vendor
