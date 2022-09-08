@@ -11,7 +11,7 @@ Annotated Console is a way to autowire and configure [symfony/console](https://g
 I recommend installing Annotated Console using [Composer](https://getcomposer.org).
 
 ```shell
-composer require cspray/annotated-console:dev-main
+composer require cspray/annotated-console:dev-main cspray/annotated-container:v2.x-dev
 ```
 
 > Annotated Console currently requires Annotated Container v2.x-dev. When Annotated Container releases 2.0 this library 

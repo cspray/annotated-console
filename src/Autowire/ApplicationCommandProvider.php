@@ -4,13 +4,12 @@ namespace Cspray\AnnotatedConsole\Autowire;
 
 use Cspray\AnnotatedConsole\Attribute\ConsoleCommand;
 use Cspray\AnnotatedContainer\AnnotatedContainer;
-use Cspray\AnnotatedContainer\Bootstrap\Observer;
-use Cspray\AnnotatedContainer\ContainerDefinition;
-use ReflectionClass;
+use Cspray\AnnotatedContainer\Bootstrap\ServiceGatherer;
+use Cspray\AnnotatedContainer\Bootstrap\ServiceWiringObserver;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Command\Command;
 
-class ApplicationCommandProvider implements Observer {
+class ApplicationCommandProvider extends ServiceWiringObserver {
 
     private readonly ConsoleCommandAttributeConfigurator $configurator;
 
@@ -18,36 +17,17 @@ class ApplicationCommandProvider implements Observer {
         $this->configurator = new ConsoleCommandAttributeConfigurator();
     }
 
-    public function beforeCompilation() : void {
-        // noop
-    }
+    protected function wireServices(AnnotatedContainer $container, ServiceGatherer $gatherer) : void {
+        foreach ($gatherer->getServicesForType(Command::class) as $serviceAndDefinition) {
+            $command = $serviceAndDefinition->getService();
+            assert($command instanceof Command);
+            $attribute = $serviceAndDefinition->getDefinition()->getAttribute();
 
-    public function afterCompilation(ContainerDefinition $containerDefinition) : void {
-        // noop
-    }
-
-    public function beforeContainerCreation(ContainerDefinition $containerDefinition) : void {
-        // noop
-    }
-
-    public function afterContainerCreation(ContainerDefinition $containerDefinition, AnnotatedContainer $container) : void {
-        foreach ($containerDefinition->getServiceDefinitions() as $serviceDefinition) {
-            if ($serviceDefinition->isAbstract()) {
-                continue;
+            if ($attribute instanceof ConsoleCommand) {
+                $this->configurator->configure($command, $attribute);
             }
 
-            if (is_subclass_of($serviceDefinition->getType()->getName(), Command::class)) {
-                $command = $container->get($serviceDefinition->getType()->getName());
-                $reflectionAttribute = (new ReflectionClass($serviceDefinition->getType()->getName()))->getAttributes(ConsoleCommand::class)[0] ?? null;
-                if ($reflectionAttribute !== null) {
-                    $attribute = $reflectionAttribute->newInstance();
-                    assert($attribute instanceof ConsoleCommand);
-                    $this->configurator->configure($command, $attribute);
-                }
-
-
-                $this->application->add($command);
-            }
+            $this->application->add($command);
         }
     }
 }

@@ -3,7 +3,7 @@
   "description": "An abstraction layer over Symfony Console to easily use Annotated Container in your CLI apps.",
   "require": {
     "php": "^8.1",
-    "cspray/annotated-container": "v2.x-dev",
+    "cspray/annotated-container": "dev-main",
     "symfony/console": "^6.1",
     "rdlowrey/auryn": "^1.4"
   },

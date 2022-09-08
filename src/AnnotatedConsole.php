@@ -3,7 +3,7 @@
 namespace Cspray\AnnotatedConsole;
 
 use Cspray\AnnotatedConsole\Autowire\ApplicationCommandProvider;
-use Cspray\AnnotatedContainer\Bootstrap;
+use Cspray\AnnotatedContainer\Bootstrap\Bootstrap;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
